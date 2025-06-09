@@ -2,7 +2,6 @@ package sample.cafekiosk.unit.beverage;
 
 import lombok.Getter;
 
-@Getter
 public class Latte implements Beverage {
 
     @Override
