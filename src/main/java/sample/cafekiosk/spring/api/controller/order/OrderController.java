@@ -2,6 +2,7 @@ package sample.cafekiosk.spring.api.controller.order;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import sample.cafekiosk.spring.api.controller.order.request.OrderRequest;
 import sample.cafekiosk.spring.api.service.order.OrderService;
@@ -15,7 +16,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/api/v1/orders/new")
-    public void createOrder(OrderRequest request) {
+    public void createOrder(@RequestBody OrderRequest request) {
         LocalDateTime registeredDateTime = LocalDateTime.now();
         orderService.createOrder(request, registeredDateTime);
     }

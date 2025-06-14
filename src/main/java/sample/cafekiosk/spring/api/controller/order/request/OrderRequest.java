@@ -3,6 +3,7 @@ package sample.cafekiosk.spring.api.controller.order.request;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import sample.cafekiosk.spring.domain.order.OrderStatus;
 import sample.cafekiosk.spring.domain.orderproduct.OrderProduct;
 
@@ -11,9 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@NoArgsConstructor
 public class OrderRequest {
 
-    List<String> productNumbers;
+    private List<String> productNumbers;
 
     @Builder
     private OrderRequest(List<String> productNumbers) {
