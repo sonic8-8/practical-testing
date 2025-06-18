@@ -13,14 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MailServiceTest {
 
-    @Spy
-    private MailSendClient mailSendClientSpy;
+//    @Spy
+//    private MailSendClient mailSendClientSpy;
 
     @Mock
     private MailSendClient mailSendClient;
@@ -47,7 +46,7 @@ class MailServiceTest {
 
         // then
         assertThat(isSent).isTrue();
-        Mockito.verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
+        verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
     }
 
     @DisplayName("메일 전송을 할 수 있다.")
@@ -62,23 +61,38 @@ class MailServiceTest {
 
         // then
         assertThat(isSent).isTrue();
-        Mockito.verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
+        verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
     }
 
 
+//    @DisplayName("메일 전송을 할 수 있다.")
+//    @Test
+//    void sendMail3() {
+//        // given
+//        Mockito.doReturn(true)
+//                .when(mailSendClientSpy)
+//                .sendMail(anyString(), anyString(), anyString(), anyString());
+//
+//        // when
+//        boolean isSent = mailService.sendMail("", "", "", "");
+//
+//        // then
+//        assertThat(isSent).isTrue();
+//        verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
+//    }
+
     @DisplayName("메일 전송을 할 수 있다.")
     @Test
-    void sendMail3() {
+    void sendMail4() {
         // given
-        Mockito.doReturn(true)
-                .when(mailSendClientSpy)
-                .sendMail(anyString(), anyString(), anyString(), anyString());
+        BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
+                .willReturn(true);
 
         // when
         boolean isSent = mailService.sendMail("", "", "", "");
 
         // then
         assertThat(isSent).isTrue();
-        Mockito.verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
+        verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
     }
 }
