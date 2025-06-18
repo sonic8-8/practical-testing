@@ -18,4 +18,21 @@ public class MailSendClient {
         log.info("메일 전송");
         throw new IllegalArgumentException("메일 전송");
     }
+
+    /**
+     * 테스트 더블 개념 중 Spy를 알아보기 위해
+     * 단순히 로그를 찍는 메서드를 추가합니다.
+     * 로그를 찍는 메서드만 실제 기능을 수행합니다.
+     */
+    public void a() {
+        log.info("a");
+    }
+
+    public void b() {
+        log.info("b");
+    }
+
+    public void c() {
+        log.info("c");
+    }
 }
